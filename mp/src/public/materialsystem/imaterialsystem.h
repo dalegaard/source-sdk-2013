@@ -66,7 +66,7 @@ typedef uint64 VertexFormat_t;
 
 // NOTE NOTE NOTE!!!!  If you up this, grep for "NEW_INTERFACE" to see if there is anything
 // waiting to be enabled during an interface revision.
-#define MATERIAL_SYSTEM_INTERFACE_VERSION "VMaterialSystem080"
+#define MATERIAL_SYSTEM_INTERFACE_VERSION "VMaterialSystem081"
 
 #ifdef POSIX
 #define ABSOLUTE_MINIMUM_DXLEVEL 90
@@ -797,6 +797,9 @@ public:
 
 	virtual int					StencilBufferBits( void ) = 0; //number of bits per pixel in the stencil buffer
 
+	// Pazer - ADDED IN VMaterialSystem081
+	virtual void SuspendTextureStreaming() = 0;
+	virtual void ResumeTextureStreaming() = 0;
 
 	//---------------------------------------------------------
 	// Material and texture management
@@ -1243,7 +1246,7 @@ public:
 	virtual void		ClearColor4ub( unsigned char r, unsigned char g, unsigned char b, unsigned char a ) = 0;
 
 	// Allows us to override the depth buffer setting of a material
-	virtual void	OverrideDepthEnable( bool bEnable, bool bDepthEnable ) = 0;
+	virtual void	OverrideDepthEnable( bool forceDepthTest, bool enableDepthWrite ) = 0;
 
 	// FIXME: This is a hack required for NVidia/XBox, can they fix in drivers?
 	virtual void	DrawScreenSpaceQuad( IMaterial* pMaterial ) = 0;

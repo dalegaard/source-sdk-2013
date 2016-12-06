@@ -25,6 +25,8 @@ static const int GLOW_FOR_ALL_SPLIT_SCREEN_SLOTS = -1;
 class CGlowObjectManager
 {
 public:
+	friend class Graphics;
+
 	CGlowObjectManager() :
 	m_nFirstFreeSlot( GlowObjectDefinition_t::END_OF_FREE_LIST )
 	{
@@ -115,7 +117,7 @@ public:
 
 	void RenderGlowEffects( const CViewSetup *pSetup, int nSplitScreenSlot );
 
-private:
+public:
 
 	void RenderGlowModels( const CViewSetup *pSetup, int nSplitScreenSlot, CMatRenderContextPtr &pRenderContext );
 	void ApplyEntityGlowEffects( const CViewSetup *pSetup, int nSplitScreenSlot, CMatRenderContextPtr &pRenderContext, float flBloomScale, int x, int y, int w, int h );
