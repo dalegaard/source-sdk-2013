@@ -11,7 +11,11 @@
 #endif
 
 #include "tier1/utlvector.h"
-#include <vgui_controls/Panel.h>
+
+namespace vgui
+{
+	class Panel;
+}
 
 #define DECLARE_PANELANIMATION( className )												\
 	static void AddToAnimationMap( char const *scriptname, char const *type, char const *var,	\
