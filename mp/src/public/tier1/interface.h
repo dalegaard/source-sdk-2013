@@ -69,6 +69,7 @@ typedef void* (*CreateInterfaceFn)(const char *pName, int *pReturnCode);
 typedef void* (*InstantiateInterfaceFn)();
 
 // Used internally to register classes.
+#ifndef CUSTOM_CREATEINTERFACE_FN
 class InterfaceReg
 {
 public:
@@ -81,6 +82,7 @@ public:
 	InterfaceReg			*m_pNext; // For the global list.
 	static InterfaceReg		*s_pInterfaceRegs;
 };
+#endif
 
 // Use this to expose an interface that can have multiple instances.
 // e.g.:
@@ -159,12 +161,14 @@ enum
 	IFACE_FAILED
 };
 
+#ifndef CUSTOM_CREATEINTERFACE_FN
 //-----------------------------------------------------------------------------
 // This function is automatically exported and allows you to access any interfaces exposed with the above macros.
 // if pReturnCode is set, it will return one of the following values (IFACE_OK, IFACE_FAILED)
 // extend this for other error conditions/code
 //-----------------------------------------------------------------------------
 DLL_EXPORT void* CreateInterface(const char *pName, int *pReturnCode);
+#endif
 
 #if defined( _X360 )
 DLL_EXPORT void *CreateInterfaceThunk( const char *pName, int *pReturnCode );
@@ -175,7 +179,9 @@ DLL_EXPORT void *CreateInterfaceThunk( const char *pName, int *pReturnCode );
 //-----------------------------------------------------------------------------
 extern CreateInterfaceFn	Sys_GetFactory( CSysModule *pModule );
 extern CreateInterfaceFn	Sys_GetFactory( const char *pModuleName );
+#ifndef CUSTOM_CREATEINTERFACE_FN
 extern CreateInterfaceFn	Sys_GetFactoryThis( void );
+#endif
 
 enum Sys_Flags
 {
