@@ -205,6 +205,15 @@ public:
 	virtual bool SupportsBorderColor( void ) const = 0;
 	virtual bool SupportsFetch4( void ) const = 0;
 
+	virtual bool CanStretchRectFromTextures() const = 0;
+
+	virtual const char* GetHWSpecificShaderDLLName() const = 0;
+
+	virtual int NumBooleanVertexShaderConstants() const = 0;
+	virtual int NumIntegerVertexShaderConstants() const = 0;
+	virtual int NumBooleanPixelShaderConstants() const = 0;
+	virtual int NumIntegerPixelShaderConstants() const = 0;
+
 	inline bool ShouldAlwaysUseShaderModel2bShaders() const { return IsOpenGL(); }
 	inline bool PlatformRequiresNonNullPixelShaders() const { return IsOpenGL(); }
 };

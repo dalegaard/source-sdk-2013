@@ -618,6 +618,11 @@ public:
 	// Allows locking and unlocking of very specific surface types.
 	virtual void LockRect( void** pOutBits, int* pOutPitch, ShaderAPITextureHandle_t texHandle, int mipmap, int x, int y, int w, int h, bool bWrite, bool bRead ) = 0;
 	virtual void UnlockRect( ShaderAPITextureHandle_t texHandle, int mipmap ) = 0;
+
+	virtual void TexLodClamp(int something) = 0;
+	virtual void TexLodBias(float bias) = 0;
+
+	virtual void CopyTextureToTexture(int something1, int something2) = 0;
 };
 
 
