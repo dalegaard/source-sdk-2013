@@ -101,10 +101,12 @@ template <typename T, size_t N>
 char (*RtlpNumberOf( UNALIGNED T (&)[N] ))[N];
 
 #ifdef _PREFAST_
+#ifndef RTL_NUMBER_OF_V2
 // The +0 is so that we can go:
 // size = ARRAYSIZE(array) * sizeof(array[0]) without triggering a /analyze
 // warning about multiplying sizeof.
 #define RTL_NUMBER_OF_V2(A) (sizeof(*RtlpNumberOf(A))+0)
+#endif
 #else
 #define RTL_NUMBER_OF_V2(A) (sizeof(*RtlpNumberOf(A)))
 #endif
