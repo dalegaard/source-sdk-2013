@@ -86,8 +86,17 @@ public:
 		return *this;
 	}
 
-private:
-	unsigned char _color[4];
+	union
+	{
+		uint8_t _color[4];
+		struct
+		{
+			uint8_t r_;
+			uint8_t g_;
+			uint8_t b_;
+			uint8_t a_;
+		};
+	};
 };
 
 

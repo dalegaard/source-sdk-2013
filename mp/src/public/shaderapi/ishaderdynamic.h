@@ -142,6 +142,19 @@ struct ShaderViewport_t
 		m_flMinZ = flMinZ;
 		m_flMaxZ = flMaxZ;
 	}
+
+	bool operator!=(const ShaderViewport_t& other) const { return !operator==(other); }
+	bool operator==(const ShaderViewport_t& other) const
+	{
+		return
+			m_nVersion == other.m_nVersion &&
+			m_nTopLeftX == other.m_nTopLeftX &&
+			m_nTopLeftY == other.m_nTopLeftY &&
+			m_nWidth == other.m_nWidth &&
+			m_nHeight == other.m_nHeight &&
+			m_flMinZ == other.m_flMinZ &&
+			m_flMaxZ == other.m_flMaxZ;
+	}
 };
 
 
