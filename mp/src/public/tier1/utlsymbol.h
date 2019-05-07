@@ -48,6 +48,7 @@ public:
 	bool operator==( CUtlSymbol const& src ) const { return m_Id == src.m_Id; }
 	bool operator==( const char* pStr ) const;
 	bool operator!=( const char* pStr ) const { return !operator==(pStr); }
+	bool operator<(const CUtlSymbol& src) const noexcept { return m_Id < src.m_Id; }
 
 	// Is valid?
 	bool IsValid() const { return m_Id != UTL_INVAL_SYMBOL; }

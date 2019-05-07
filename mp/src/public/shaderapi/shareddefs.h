@@ -33,7 +33,7 @@ enum ShaderTexCoordComponent_t
 	SHADER_TEXCOORD_U
 };
 
-enum ShaderTexFilterMode_t
+enum ShaderTexFilterMode_t : unsigned
 {
 	SHADER_TEXFILTERMODE_NEAREST,
 	SHADER_TEXFILTERMODE_LINEAR,
@@ -44,7 +44,7 @@ enum ShaderTexFilterMode_t
 	SHADER_TEXFILTERMODE_ANISOTROPIC
 };
 
-enum ShaderTexWrapMode_t
+enum ShaderTexWrapMode_t : unsigned
 {
 	SHADER_TEXWRAPMODE_CLAMP,
 	SHADER_TEXWRAPMODE_REPEAT,

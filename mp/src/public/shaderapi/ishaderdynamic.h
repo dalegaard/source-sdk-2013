@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //
@@ -26,7 +26,7 @@ typedef int ShaderAPITextureHandle_t;
 //-----------------------------------------------------------------------------
 class CMeshBuilder;
 class IMaterialVar;
-struct LightDesc_t; 
+struct LightDesc_t;
 
 
 //-----------------------------------------------------------------------------
@@ -143,8 +143,8 @@ struct ShaderViewport_t
 		m_flMaxZ = flMaxZ;
 	}
 
-	bool operator!=(const ShaderViewport_t& other) const { return !operator==(other); }
-	bool operator==(const ShaderViewport_t& other) const
+	bool operator!=(const ShaderViewport_t& other) const noexcept { return !operator==(other); }
+	bool operator==(const ShaderViewport_t& other) const noexcept
 	{
 		return
 			m_nVersion == other.m_nVersion &&
@@ -155,6 +155,30 @@ struct ShaderViewport_t
 			m_flMinZ == other.m_flMinZ &&
 			m_flMaxZ == other.m_flMaxZ;
 	}
+	bool operator<(const ShaderViewport_t& other) const noexcept
+	{
+		ORDERING_OP_LT_IMPL(m_nVersion);
+		ORDERING_OP_LT_IMPL(m_nTopLeftX);
+		ORDERING_OP_LT_IMPL(m_nTopLeftY);
+		ORDERING_OP_LT_IMPL(m_nWidth);
+		ORDERING_OP_LT_IMPL(m_nHeight);
+		ORDERING_OP_LT_IMPL(m_flMinZ);
+		ORDERING_OP_LT_IMPL(m_flMaxZ);
+
+		return false; // equal
+	}
+
+#if defined(TF2VULKAN) && (_MSC_VER >= 1920) && !defined(__INTELLISENSE__)
+	std::strong_ordering operator<=>(const ShaderViewport_t& other) const noexcept
+	{
+		if (operator<(other))
+			return std::strong_ordering::less;
+		else if (operator==(other))
+			return std::strong_ordering::equal;
+		else
+			return std::strong_ordering::greater;
+	}
+#endif
 };
 
 
@@ -314,7 +338,7 @@ public:
 	virtual void SetIntegerVertexShaderConstant( int var, int const* pVec, int numIntVecs = 1, bool bForce = false ) = 0;
 	virtual void SetBooleanPixelShaderConstant( int var, BOOL const* pVec, int numBools = 1, bool bForce = false ) = 0;
 	virtual void SetIntegerPixelShaderConstant( int var, int const* pVec, int numIntVecs = 1, bool bForce = false ) = 0;
-	
+
 	//Are we in a configuration that needs access to depth data through the alpha channel later?
 	virtual bool ShouldWriteDepthToDestAlpha( void ) const = 0;
 
@@ -333,7 +357,7 @@ public:
 												 int nMaximumDeformations,
 												 int *pNumDefsOut ) const = 0;
 
-	// This lets the lower level system that certain vertex fields requested 
+	// This lets the lower level system that certain vertex fields requested
 	// in the shadow state aren't actually being read given particular state
 	// known only at dynamic state time. It's here only to silence warnings.
 	virtual void MarkUnusedVertexFields( unsigned int nFlags, int nTexCoordCount, bool *pUnusedTexCoords ) = 0;

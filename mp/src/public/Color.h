@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================//
@@ -21,9 +21,8 @@ class Color
 public:
 	// constructors
 	constexpr Color() : _color { (unsigned char)0, (unsigned char)0, (unsigned char)0, (unsigned char)0 } { }
-	constexpr Color(int _r, int _g, int _b) : _color { (unsigned char)_r, (unsigned char)_g, (unsigned char)_b, (unsigned char)0 } { }
-	constexpr Color(int _r, int _g, int _b, int _a) : _color { (unsigned char)_r, (unsigned char)_g, (unsigned char)_b, (unsigned char)_a } { }
-	
+	constexpr Color(int _r, int _g, int _b, int _a = 255) : _color { (unsigned char)_r, (unsigned char)_g, (unsigned char)_b, (unsigned char)_a } { }
+
 	// set the color
 	// r - red component (0-255)
 	// g - green component (0-255)
@@ -59,7 +58,7 @@ public:
 	inline int g() const	{ return _color[1]; }
 	inline int b() const	{ return _color[2]; }
 	inline int a() const	{ return _color[3]; }
-	
+
 	unsigned char &operator[](int index)
 	{
 		return _color[index];
