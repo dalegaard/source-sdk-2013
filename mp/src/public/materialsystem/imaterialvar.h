@@ -233,6 +233,11 @@ public:
 	}
 #endif
 
+	FORCEINLINE bool GetBoolValue() const
+	{
+		return !!GetIntValue();
+	}
+
 private:
 	FORCEINLINE void SetTempIndex( int nIndex )
 	{

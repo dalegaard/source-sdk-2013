@@ -155,30 +155,6 @@ struct ShaderViewport_t
 			m_flMinZ == other.m_flMinZ &&
 			m_flMaxZ == other.m_flMaxZ;
 	}
-	bool operator<(const ShaderViewport_t& other) const noexcept
-	{
-		ORDERING_OP_LT_IMPL(m_nVersion);
-		ORDERING_OP_LT_IMPL(m_nTopLeftX);
-		ORDERING_OP_LT_IMPL(m_nTopLeftY);
-		ORDERING_OP_LT_IMPL(m_nWidth);
-		ORDERING_OP_LT_IMPL(m_nHeight);
-		ORDERING_OP_LT_IMPL(m_flMinZ);
-		ORDERING_OP_LT_IMPL(m_flMaxZ);
-
-		return false; // equal
-	}
-
-#if defined(TF2VULKAN) && (_MSC_VER >= 1920) && !defined(__INTELLISENSE__)
-	std::strong_ordering operator<=>(const ShaderViewport_t& other) const noexcept
-	{
-		if (operator<(other))
-			return std::strong_ordering::less;
-		else if (operator==(other))
-			return std::strong_ordering::equal;
-		else
-			return std::strong_ordering::greater;
-	}
-#endif
 };
 
 
