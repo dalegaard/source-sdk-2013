@@ -406,7 +406,7 @@ typedef void * HINSTANCE;
 #undef offsetof
 //#define offsetof( type, var ) __builtin_offsetof( type, var ) 
 #define offsetof(s,m)	(size_t)&(((s *)0)->m)
-#else
+#elif !defined(_MSC_VER)
 #undef offsetof
 #define offsetof(s,m)	(size_t)&(((s *)0)->m)
 #endif
