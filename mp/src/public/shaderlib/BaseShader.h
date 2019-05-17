@@ -171,7 +171,7 @@ public:
 	void GetTextureDimensions( float* pOutWidth, float* pOutHeight, int nTextureVar );
 
 	// Is the texture translucent?
-	bool TextureIsTranslucent( int textureVar, bool isBaseTexture );
+	bool TextureIsTranslucent( int textureVar, bool isBaseTexture ) const;
 
 	// Returns the translucency...
 	float GetAlpha( IMaterialVar** params = NULL );
@@ -201,8 +201,8 @@ public:
 
 	// Helpers for color modulation
 	void SetColorState( int colorVar, bool setAlpha = false );
-	bool IsAlphaModulating();
-	bool IsColorModulating();
+	bool IsAlphaModulating() const;
+	bool IsColorModulating() const;
 	void ComputeModulationColor( float* color );
 	void SetModulationShadowState( int tintVar = -1 );
 	void SetModulationDynamicState( int tintVar = -1 );
