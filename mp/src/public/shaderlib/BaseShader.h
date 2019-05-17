@@ -273,7 +273,7 @@ public:
 	static IMaterialVar **s_ppParams;
 
 protected:
-	SoftwareVertexShader_t m_SoftwareVertexShader;
+	SoftwareVertexShader_t m_SoftwareVertexShader; // TODO: Remove?
 
 	static const char *s_pTextureGroupName; // Current material's texture group name.
 	static IShaderShadow *s_pShaderShadow;

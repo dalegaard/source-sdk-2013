@@ -157,6 +157,9 @@ struct ShaderViewport_t
 	}
 };
 
+enum RenderParamFloat_t;
+enum RenderParamInt_t;
+enum RenderParamVector_t;
 
 //-----------------------------------------------------------------------------
 // The Shader interface versions
@@ -272,16 +275,13 @@ public:
 
 	virtual void PerspectiveOffCenterX( double fovx, double aspect, double zNear, double zFar, double bottom, double top, double left, double right ) = 0;
 
-	virtual void SetFloatRenderingParameter(int parm_number, float value) = 0;
+	virtual void SetFloatRenderingParameter(RenderParamFloat_t parm_number, float value) = 0;
+	virtual void SetIntRenderingParameter(RenderParamInt_t parm_number, int value) = 0;
+	virtual void SetVectorRenderingParameter(RenderParamVector_t parm_number, Vector const &value) = 0;
 
-	virtual void SetIntRenderingParameter(int parm_number, int value) = 0 ;
-	virtual void SetVectorRenderingParameter(int parm_number, Vector const &value) = 0 ;
-
-	virtual float GetFloatRenderingParameter(int parm_number) const = 0 ;
-
-	virtual int GetIntRenderingParameter(int parm_number) const = 0 ;
-
-	virtual Vector GetVectorRenderingParameter(int parm_number) const = 0 ;
+	virtual float GetFloatRenderingParameter(RenderParamFloat_t parm_number) const = 0;
+	virtual int GetIntRenderingParameter(RenderParamInt_t parm_number) const = 0;
+	virtual Vector GetVectorRenderingParameter(RenderParamVector_t parm_number) const = 0;
 
 	// stencil buffer operations.
 	virtual void SetStencilEnable(bool onoff) = 0;

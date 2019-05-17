@@ -143,8 +143,8 @@ public:
 	//
 
 	// Viewport methods
-	virtual void SetViewports( int nCount, const ShaderViewport_t* pViewports ) = 0;
-	virtual int GetViewports( ShaderViewport_t* pViewports, int nMax ) const = 0;
+	virtual void SetViewports( int nCount, const ShaderViewport_t* pViewports ) override = 0;
+	virtual int GetViewports( ShaderViewport_t* pViewports, int nMax ) const override = 0;
 
 	// Buffer clearing
 	virtual void ClearBuffers( bool bClearColor, bool bClearDepth, bool bClearStencil, int renderTargetWidth, int renderTargetHeight ) = 0;
@@ -357,7 +357,7 @@ public:
 	virtual void SetFogZ( float fogZ ) = 0;
 	// Scene fog state.
 	virtual void SceneFogColor3ub( unsigned char r, unsigned char g, unsigned char b ) = 0;
-	virtual void GetSceneFogColor( unsigned char *rgb ) = 0;
+	virtual void GetSceneFogColor( unsigned char *rgb ) override = 0;
 	virtual void SceneFogMode( MaterialFogMode_t fogMode ) = 0;
 
 	// Can we download textures?
@@ -447,13 +447,13 @@ public:
 
 	// Rendering parameters control special drawing modes withing the material system, shader
 	// system, shaders, and engine. renderparm.h has their definitions.
-	virtual void SetFloatRenderingParameter(int parm_number, float value) = 0;
-	virtual void SetIntRenderingParameter(int parm_number, int value) = 0;
-	virtual void SetVectorRenderingParameter(int parm_number, Vector const &value) = 0;
+	virtual void SetFloatRenderingParameter(RenderParamFloat_t parm_number, float value) override = 0;
+	virtual void SetIntRenderingParameter(RenderParamInt_t parm_number, int value) override = 0;
+	virtual void SetVectorRenderingParameter(RenderParamVector_t parm_number, Vector const &value) override = 0;
 
-	virtual float GetFloatRenderingParameter(int parm_number) const = 0;
-	virtual int GetIntRenderingParameter(int parm_number) const = 0;
-	virtual Vector GetVectorRenderingParameter(int parm_number) const = 0;
+	virtual float GetFloatRenderingParameter(RenderParamFloat_t parm_number) const override = 0;
+	virtual int GetIntRenderingParameter(RenderParamInt_t parm_number) const override = 0;
+	virtual Vector GetVectorRenderingParameter(RenderParamVector_t parm_number) const override = 0;
 
 	virtual void SetFastClipPlane( const float *pPlane ) = 0;
 	virtual void EnableFastClip( bool bEnable ) = 0;
@@ -471,15 +471,15 @@ public:
 	virtual int GetMaxIndicesToRender( ) = 0;
 
 	// stencil methods
-	virtual void SetStencilEnable(bool onoff) = 0;
-	virtual void SetStencilFailOperation(StencilOperation_t op) = 0;
-	virtual void SetStencilZFailOperation(StencilOperation_t op) = 0;
-	virtual void SetStencilPassOperation(StencilOperation_t op) = 0;
-	virtual void SetStencilCompareFunction(StencilComparisonFunction_t cmpfn) = 0;
-	virtual void SetStencilReferenceValue(int ref) = 0;
-	virtual void SetStencilTestMask(uint32 msk) = 0;
-	virtual void SetStencilWriteMask(uint32 msk) = 0;
-	virtual void ClearStencilBufferRectangle(int xmin, int ymin, int xmax, int ymax, int value) = 0;
+	virtual void SetStencilEnable(bool onoff) override = 0;
+	virtual void SetStencilFailOperation(StencilOperation_t op) override = 0;
+	virtual void SetStencilZFailOperation(StencilOperation_t op) override = 0;
+	virtual void SetStencilPassOperation(StencilOperation_t op) override = 0;
+	virtual void SetStencilCompareFunction(StencilComparisonFunction_t cmpfn) override = 0;
+	virtual void SetStencilReferenceValue(int ref) override = 0;
+	virtual void SetStencilTestMask(uint32 msk) override = 0;
+	virtual void SetStencilWriteMask(uint32 msk) override = 0;
+	virtual void ClearStencilBufferRectangle(int xmin, int ymin, int xmax, int ymax, int value) override = 0;
 
 	// disables all local lights
 	virtual void DisableAllLocalLights() = 0;
@@ -598,7 +598,7 @@ public:
 	// Only does anything on XBox360. This is useful to eliminate stalls
 	virtual void EnableBuffer2FramesAhead( bool bEnable ) = 0;
 
-	virtual void SetDepthFeatheringPixelShaderConstant( int iConstant, float fDepthBlendScale ) = 0;
+	virtual void SetDepthFeatheringPixelShaderConstant( int iConstant, float fDepthBlendScale ) override = 0;
 
 	// debug logging
 	// only implemented in some subclasses

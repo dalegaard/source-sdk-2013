@@ -114,7 +114,7 @@ public:
 
 	// Matrix
 	virtual void			SetMatrixValue( VMatrix const& matrix ) = 0;
-	virtual const VMatrix  &GetMatrixValue( ) = 0;
+	virtual const VMatrix  &GetMatrixValue( ) const = 0;
 	virtual bool			MatrixIsIdentity() const = 0;
 
 	// Copy....
