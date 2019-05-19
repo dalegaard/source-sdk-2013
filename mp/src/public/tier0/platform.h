@@ -412,7 +412,11 @@ typedef void * HINSTANCE;
 #endif
 
 
-#define ALIGN_VALUE( val, alignment ) ( ( val + alignment - 1 ) & ~( alignment - 1 ) ) //  need macro for constant expression
+template<typename T1, typename T2>
+static constexpr auto ALIGN_VALUE(const T1& val, const T2& alignment)
+{
+	return ((val + alignment - 1) & ~(alignment - 1));
+}
 
 // Used to step into the debugger
 #if defined( _WIN32 ) && !defined( _X360 )
