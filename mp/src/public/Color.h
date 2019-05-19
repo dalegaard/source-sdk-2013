@@ -21,7 +21,7 @@ class Color
 public:
 	// constructors
 	constexpr Color() : _color { (unsigned char)0, (unsigned char)0, (unsigned char)0, (unsigned char)0 } { }
-	constexpr Color(int _r, int _g, int _b, int _a = 255) : _color { (unsigned char)_r, (unsigned char)_g, (unsigned char)_b, (unsigned char)_a } { }
+	constexpr Color(int _r, int _g, int _b, int _a = 255) : r_(_r), g_(_g), b_(_b), a_(_a) { }
 
 	// set the color
 	// r - red component (0-255)
@@ -87,14 +87,15 @@ public:
 
 	union
 	{
-		uint8_t _color[4];
 		struct
 		{
-			uint8_t r_;
-			uint8_t g_;
-			uint8_t b_;
-			uint8_t a_;
+			// Just so it's readable in intellisense
+			uint32_t r_ : 8;
+			uint32_t g_ : 8;
+			uint32_t b_ : 8;
+			uint32_t a_ : 8;
 		};
+		uint8_t _color[4];
 	};
 };
 
