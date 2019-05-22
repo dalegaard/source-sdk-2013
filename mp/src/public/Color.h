@@ -96,6 +96,7 @@ public:
 			uint32_t a_ : 8;
 		};
 		uint8_t _color[4];
+		uint32_t m_RawColor;
 	};
 };
 
