@@ -974,6 +974,13 @@ int __cdecl _CrtDbgReportV( int nRptType, const wchar_t *szFile, int nLine,
 int __cdecl _CrtDbgReportW( int nRptType, const wchar_t *szFile, int nLine,
 						    const wchar_t *szModule, const wchar_t *szFormat, ...)
 {
+#ifdef _DEBUG
+	va_list args;
+	va_start(args, szFormat);
+	wchar_t buf[512];
+	vswprintf_s(buf, szFormat, args);
+	va_end(args);
+#endif
 	Assert(0);
 	return 0;
 }
